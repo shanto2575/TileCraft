@@ -1,5 +1,4 @@
 import { getTiles } from '@/lib/api/data';
-import { Button } from '@heroui/react';
 import Image from 'next/image';
 import React from 'react'
 
