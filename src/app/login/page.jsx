@@ -1,20 +1,36 @@
 'use client'
+import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { FaGithub } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const LogInPage = () => {
     const { register, handleSubmit } = useForm()
-    const onSubmit = (e) => {
-        console.log(e, 'input data')
+    const onSubmit = async(data) => {
+        // console.log(data, 'input data')
+        const {email, password } = data;
+
+        const { data: res, error } = await authClient.signIn.email({
+            email: email,
+            password: password,
+            callbackURL: '/'
+        })
+        console.log(res, error)
+        if (error) {
+            toast.error(error.message)
+        }
+        if (res) {
+            toast.success('LogIn Successful')
+        }
 
     }
     return (
         <div className='flex items-center justify-center h-[600px] mt-6'>
-            <Form className="flex w-96 flex-col gap-4 border rounded-2xl p-5 space-y-4"
+            <Form className="flex w-[420px] flex-col gap-4 border rounded-2xl p-5 space-y-4"
                 onSubmit={handleSubmit(onSubmit)}>
                 <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800">
                     Login to Your Account

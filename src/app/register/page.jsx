@@ -1,22 +1,45 @@
 'use client'
+
+import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { FaGithub } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
     const { register, handleSubmit } = useForm()
-    const onSubmit = (e) => {
-        console.log(e, 'register data')
+    const router = useRouter();
+    const onSubmit = async (data) => {
+        // console.log(data, 'register data')
+        const { name, email, photo, password } = data;
 
+        const { data: res, error } = await authClient.signUp.email({
+            name: name,
+            email: email,
+            image: photo,
+            password: password,
+            // callbackURL: '/login'
+        })
+        console.log(res, error)
+        if (error) {
+            toast.error(error.message)
+        }
+        if (res) {
+            toast.success('Register Successful')
+        }
+        setTimeout(() => {
+            router.push("/login");
+        }, 800);
     }
     return (
-        <div className='flex items-center justify-center h-[800px] mt-12'>
-            <Form className="flex w-96 flex-col gap-4 border rounded-2xl p-5 space-y-4"
+        <div className='flex items-center justify-center h-[800px] mt-8'>
+            <Form className="flex w-[500px] flex-col gap-4 border rounded-2xl p-5 space-y-4"
                 onSubmit={handleSubmit(onSubmit)}>
-                <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800">
+                <h2 className=" md:text-3xl font-bold text-center text-gray-800">
                     Register to Your Account
                 </h2>
                 <TextField
