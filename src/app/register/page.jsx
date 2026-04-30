@@ -24,7 +24,7 @@ const RegisterPage = () => {
             password: password,
             // callbackURL: '/login'
         })
-        console.log(res, error)
+        // console.log(res, error)
         if (error) {
             toast.error(error.message)
         }

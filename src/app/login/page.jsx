@@ -10,24 +10,37 @@ import { toast } from "react-toastify";
 
 const LogInPage = () => {
     const { register, handleSubmit } = useForm()
-    const onSubmit = async(data) => {
+    const onSubmit = async (data) => {
         // console.log(data, 'input data')
-        const {email, password } = data;
+        const { email, password } = data;
 
         const { data: res, error } = await authClient.signIn.email({
             email: email,
             password: password,
             callbackURL: '/'
         })
-        console.log(res, error)
+        // console.log(res, error)
         if (error) {
             toast.error(error.message)
         }
         if (res) {
             toast.success('LogIn Successful')
         }
-
     }
+
+    const GoogleSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+        console.log(data, 'google data')
+    };
+    //Github Login
+    const GithubSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "github"
+        })
+    }
+
     return (
         <div className='flex items-center justify-center h-[600px] mt-6'>
             <Form className="flex w-[420px] flex-col gap-4 border rounded-2xl p-5 space-y-4"
@@ -87,10 +100,10 @@ const LogInPage = () => {
                 </p>
                 <div className="text-center font-bold">------ OR ------</div>
                 <div>
-                    <Button variant="outline" className={'rounded w-full'}>Connect With <FcGoogle /> Google</Button>
+                    <Button variant="outline" className={'rounded w-full'} onClick={GoogleSignIn}>Connect With <FcGoogle /> Google</Button>
                 </div>
                 <div>
-                    <Button variant="outline" className={'rounded w-full'}>Connect With <FaGithub />Github</Button>
+                    <Button variant="outline" className={'rounded w-full'} onClick={GithubSignIn}>Connect With <FaGithub />Github</Button>
                 </div>
             </Form>
         </div>

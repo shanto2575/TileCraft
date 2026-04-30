@@ -11,6 +11,7 @@ const nextConfig = {
         search: '',
       },
     ],
+    domains: ["avatars.githubusercontent.com"],
   },
 };
 
