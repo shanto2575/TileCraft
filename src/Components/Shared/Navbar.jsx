@@ -27,13 +27,13 @@ const Navbar = () => {
                         :
                         user ? (
                             <div className='flex gap-2 items-center justify-center'>
-                                <h2 className='whitespace-nowrap font-bold text-purple-500'>Hi, {user.name}</h2>
+                                <h2 className='whitespace-nowrap font-bold bg-linear-to-r from-blue-500 to-orange-600 bg-clip-text text-transparent'>Hi, {user.name}</h2>
                                 <Image
                                     src={user.image || avater}
                                     width={400}
                                     height={400}
                                     alt='user-logo'
-                                    className='w-full h-8'
+                                    className='w-10 h-10 rounded-full'
                                 />
                                 <Button className={'rounded'} onClick={async () => await authClient.signOut()}>LogOut</Button>
                             </div>

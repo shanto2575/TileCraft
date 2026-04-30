@@ -21,7 +21,7 @@ const MyProfilePage = () => {
                     alt='user-logo'
                     className='w-full h-[400px] rounded-full'
                 />
-                <h2 className='text-2xl font-bold'>Name : <span>{user.name}</span></h2>
+                <h2 className='text-2xl font-bold'>Name : <span className='bg-linear-to-r from-pink-600 to-orange-600 bg-clip-text text-transparent'>{user.name}</span></h2>
                 <p className='text-xl font-semibold'>Email : <span>{user.email}</span></p>
                 <div>
                     <UpdateForm></UpdateForm>

@@ -35,6 +35,20 @@ const RegisterPage = () => {
             router.push("/login");
         }, 800);
     }
+
+    const GoogleSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+        console.log(data, 'google data')
+    };
+    //Github Login
+    const GithubSignIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "github"
+        })
+    }
+
     return (
         <div className='flex items-center justify-center h-[800px] mt-8'>
             <Form className="flex w-[500px] flex-col gap-4 border rounded-2xl p-5 space-y-4"
@@ -107,10 +121,10 @@ const RegisterPage = () => {
                 </div>
                 <div className="text-center font-bold">------ OR ------</div>
                 <div>
-                    <Button variant="outline" className={'rounded w-full'}>Connect With <FcGoogle /> Google</Button>
+                    <Button variant="outline" className={'rounded w-full'} onClick={GoogleSignIn}>Connect With <FcGoogle /> Google</Button>
                 </div>
                 <div>
-                    <Button variant="outline" className={'rounded w-full'}>Connect With <FaGithub />Github</Button>
+                    <Button variant="outline" className={'rounded w-full'} onClick={GithubSignIn}>Connect With <FaGithub />Github</Button>
                 </div>
             </Form>
         </div>
