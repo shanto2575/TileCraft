@@ -119,6 +119,12 @@ const RegisterPage = () => {
                         Register
                     </Button>
                 </div>
+                <p className="text-gray-600 text-md text-center">
+                                    You have an account?{" "}
+                                    <Link href="/login" className="text-amber-500 font-semibold hover:underline">
+                                        LogIn
+                                    </Link>
+                                </p>
                 <div className="text-center font-bold">------ OR ------</div>
                 <div>
                     <Button variant="outline" className={'rounded w-full'} onClick={GoogleSignIn}>Connect With <FcGoogle /> Google</Button>
