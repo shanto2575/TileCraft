@@ -13,7 +13,7 @@ const Navbar = () => {
                     <NavLink href={'/all-tiles'}>All Tiles</NavLink>
                     <NavLink href={'/my-profile'}>My Profile</NavLink>
                 </div>
-                <Link href={'/'}><Button className={'rounded'}>Log In</Button></Link>
+                <Link href={'/login'}><Button className={'rounded'}>Log In</Button></Link>
             </div>
         </div>
     )
