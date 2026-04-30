@@ -13,8 +13,8 @@ const Navbar = () => {
     const user = session?.user;
     return (
         <div>
-            <div className='flex justify-between items-center shadow px-14 py-4'>
-                <Link href={'/'}><h2 className='text-2xl bg-linear-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent font-bold'>TileCraft</h2></Link>
+            <div className='flex flex-col lg:flex-row justify-center space-y-5 lg:justify-between items-center shadow lg:px-14 py-4'>
+                <Link href={'/'}><h2 className='lg:text-2xl bg-linear-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent font-bold'>TileCraft</h2></Link>
                 <div className='flex gap-8 font-semibold text-xl'>
                     <NavLink href={'/'}>Home</NavLink>
                     <NavLink href={'/all-tiles'}>All Tiles</NavLink>
