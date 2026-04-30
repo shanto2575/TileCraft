@@ -18,7 +18,7 @@ const AllTilesCard = ({ tiles }) => {
                 />
             </div>
             <h2 className='text-xl font-bold my-3 text-center'>{title}</h2>
-            <Link href={`/all-tiles/${id}`}><Button variant='outline' className={'w-full my-3 hover:text-pink-800'}>View Details</Button></Link>
+            <Link href={`/tile/${id}`}><Button variant='outline' className={'w-full my-3 hover:text-pink-800'}>View Details</Button></Link>
         </div>
     )
 }

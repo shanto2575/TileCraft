@@ -24,7 +24,7 @@ const TopTiles = async () => {
                                 />
                             </div>
                             <h2 className='text-xl font-bold my-3 text-center'>{tiles.title}</h2>
-                            <Link href={`/all-tiles/${tiles.id}`}><Button variant='outline' className={'w-full my-3 hover:text-pink-800'}>View Details</Button></Link>
+                            <Link href={`/tile/${tiles.id}`}><Button variant='outline' className={'w-full my-3 hover:text-pink-800'}>View Details</Button></Link>
                         </div>
                     })
                 }

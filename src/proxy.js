@@ -13,7 +13,6 @@ export async function proxy(request) {
     return NextResponse.redirect(new URL('/login', request.url))
 }
 
-
 export const config = {
-    matcher:[ '/all-tiles/:path*','/my-profile'],
+    matcher:[ '/tile/:path*','/my-profile'],
 }
