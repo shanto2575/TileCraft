@@ -12,3 +12,19 @@ This project was built as a Next.js App Router assignment focusing on authentica
 Key Features:
 1-Home Page
 2-Tiles Gallery
+3-Authentication (BetterAuth)
+4-Protected Routes
+5-My Profile
+
+
+###NPM Packages Used
+
+@heroui/react
+better-auth
+mongodb
+react-hook-form
+react-toastify
+react-fast-marquee
+animate.css
+react-icons
+json-server

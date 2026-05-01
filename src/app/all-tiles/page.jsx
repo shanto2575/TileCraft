@@ -1,7 +1,10 @@
 import TilesSearch from '@/Components/pages/TilesSearch';
-import { getTiles } from '@/lib/api/data'
+import { getTiles } from '../../lib/api/data'
 
+export const metadata = {
+    title: "TileCarft - Tiles Gallery",
 
+};
 const AllTilesPage = async () => {
     const tiles = await getTiles();
     // console.log(tiles,'all tiles')

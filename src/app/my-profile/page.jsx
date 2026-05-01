@@ -4,6 +4,8 @@ import { authClient } from '@/lib/auth-client';
 import Image from 'next/image';
 import avater from '@/asset/avater.png'
 
+
+
 const MyProfilePage = () => {
     const { data: session, isPending, } = authClient.useSession()
     console.log(session, 'session')

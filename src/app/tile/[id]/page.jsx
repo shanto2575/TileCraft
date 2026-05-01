@@ -1,6 +1,16 @@
-import { getTiles } from '@/lib/api/data';
+import { getTiles } from '../../../lib/api/data';
 import Image from 'next/image';
-import React from 'react'
+
+export async function generateMetadata({ params }) {
+    const {id}=await params;
+    // console.log(params,'metadata')
+    const tiles = await getTiles()
+    const tile = tiles.find(t => t.id === id)
+    return {
+        title: tile?.title || 'tiles Details',
+        description: tile?.description || 'tiles description',
+    };
+}
 
 const TilesDetailsPage = async ({ params }) => {
     const { id } = await params;
@@ -9,12 +19,19 @@ const TilesDetailsPage = async ({ params }) => {
     // console.log(tiles,'details tiles')
     const tilesDetails = tiles.find(n => n.id === id)
     // console.log(tilesDetails)
+    if (!tilesDetails) {
+        return (
+            <div className="flex justify-center items-center h-[500px] text-2xl font-bold">
+                Tile not found
+            </div>
+        );
+    }
     const { title, description, image, category, price, dimensions, material, currency, inStock } = tilesDetails;
     return (
         <div>
             <div className='border shadow-[0_0_25px_rgba(0,0,0,0.15)] rounded-2xl m-12'>
-                <div className='flex gap-10 p-5 border'>
-                    <div className='relative w-[700px] h-[700px] aspect-square'>
+                <div className='flex flex-col lg:flex-row gap-10 p-5 border'>
+                    <div className='relative  lg:w-[700px] lg:h-[700px] aspect-square'>
                         <Image
                             src={image}
                             fill
@@ -31,8 +48,8 @@ const TilesDetailsPage = async ({ params }) => {
                         <p className='text-xl font-bold'>Material : <span className='font-semibold'>{material}</span></p>
                         <p className='text-xl font-bold'>Price : <span className='font-semibold'>{price} {currency}</span></p>
                         <p className='text-xl font-bold'>isStack : <span className='font-semibold'>{`${inStock === true ? 'Available' : 'Not Avilable'}`}</span></p>
-
                     </div>
+
                 </div>
             </div>
         </div>
