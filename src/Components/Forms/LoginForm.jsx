@@ -1,13 +1,12 @@
 import { Check } from '@gravity-ui/icons';
 import { Button, Description, FieldError, Form, Input, Label, TextField } from '@heroui/react';
 import Link from 'next/link';
-import React from 'react'
 import { useForm } from 'react-hook-form';
-import { FaGithub } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 
 
-const LoginForm = ({ onSubmit, GithubSignIn, GoogleSignIn }) => {
+const LoginForm = ({ onSubmit, GithubSignIn, GoogleSignIn, showpassword,setshowpassword}) => {
     const { register, handleSubmit } = useForm()
     return (
         <div className='flex items-center justify-center h-[600px] mt-6'>
@@ -35,7 +34,8 @@ const LoginForm = ({ onSubmit, GithubSignIn, GoogleSignIn }) => {
                     isRequired
                     minLength={8}
                     name="password"
-                    type="password"
+                    className={'relative '}
+                    type={showpassword? 'text':"password"}
                     validate={(value) => {
                         if (value.length < 8) {
                             return "Password must be at least 8 characters";
@@ -53,6 +53,9 @@ const LoginForm = ({ onSubmit, GithubSignIn, GoogleSignIn }) => {
                     <Input placeholder="Enter your password" {...register("password")} />
                     <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
                     <FieldError />
+                    <span onClick={()=>setshowpassword(!showpassword)} className='cursor-pointer absolute top-11 right-4'>
+                        {showpassword?<FaEye/> : <FaEyeSlash/>}
+                    </span>
                 </TextField>
                 <div className="flex gap-2">
                     <Button type="submit" className={'w-full'}>

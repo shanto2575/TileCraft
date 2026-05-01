@@ -2,10 +2,11 @@
 import RegisterForm from "@/Components/Forms/RegisterForm";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 const RegisterPage = () => {
-    // const { register, handleSubmit } = useForm()
+    const [showpassword, setshowpassword] = useState(false)
     const router = useRouter();
     const onSubmit = async (data) => {
         // console.log(data, 'register data')
@@ -42,7 +43,13 @@ const RegisterPage = () => {
             provider: "github"
         })
     }
-    return <RegisterForm GoogleSignIn={GoogleSignIn} GithubSignIn={GithubSignIn} onSubmit={onSubmit}></RegisterForm>
+    return <RegisterForm 
+    showpassword={showpassword} 
+    setshowpassword={setshowpassword} 
+    GoogleSignIn={GoogleSignIn} 
+    GithubSignIn={GithubSignIn} 
+    onSubmit={onSubmit}
+    />
 }
 
 export default RegisterPage

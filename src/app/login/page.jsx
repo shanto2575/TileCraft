@@ -1,9 +1,11 @@
 'use client'
 import LoginForm from "@/Components/Forms/LoginForm";
 import { authClient } from "@/lib/auth-client";
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 const LogInPage = () => {
+    const [showpassword, setshowpassword] = useState(false)
     
     const onSubmit = async (data) => {
         // console.log(data, 'input data')
@@ -24,24 +26,25 @@ const LogInPage = () => {
     }
 
     const GoogleSignIn = async () => {
-        const {data,error} = await authClient.signIn.social({
+        const data = await authClient.signIn.social({
             provider: "google",
         });
         // console.log(data, 'google data')
-        if(error) toast.error(error.message)
     };
     //Github Login
     const GithubSignIn = async () => {
-        const {data,error} = await authClient.signIn.social({
+        const data = await authClient.signIn.social({
             provider: "github"
         })
-        if(error) toast.error(error.message)
+
     }
 
     return <LoginForm
     GithubSignIn={GithubSignIn}
     GoogleSignIn={GoogleSignIn}
     onSubmit={onSubmit}
+    showpassword={showpassword}
+    setshowpassword={setshowpassword}
     />
 }
 
